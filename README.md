@@ -1,7 +1,26 @@
 # Orthodox JS
 
-_A style guide embracing the miraculous genesis of the JavaScript language_
-_Also, a collection of best practices to favour imperative style over documentation_
+- _A style guide embracing the miraculous genesis of the JavaScript language_
+- _Also, a collection of best practices to favour imperative style over documentation_
+
+- [Orthodox JS](#orthodox-js)
+  - [Syntax](#syntax)
+    - [Favour `var` over `let` and `const`](#favour-var-over-let-and-const)
+    - [Favour the `with` statement over destructuring assignments](#favour-the-with-statement-over-destructuring-assignments)
+    - [Semicolons](#semicolons)
+      - [One at a time!](#one-at-a-time)
+    - [Whitespace](#whitespace)
+  - [Logic flow](#logic-flow)
+    - [Always use loose equality comparison](#always-use-loose-equality-comparison)
+    - [Use boolean literals in control structures](#use-boolean-literals-in-control-structures)
+  - [Documentation](#documentation)
+    - [Don't overuse comments](#dont-overuse-comments)
+    - [Comments must follow the code](#comments-must-follow-the-code)
+    - [Don't ever use `eval()` to document your code](#dont-ever-use-eval-to-document-your-code)
+    - [Use higher order comments](#use-higher-order-comments)
+  - [Testing](#testing)
+    - [Write inline tests](#write-inline-tests)
+  - [Contributing](#contributing)
 
 ## Syntax
 
@@ -46,7 +65,7 @@ When using `with`, you don't have to hard-code assumptions about a given object'
 
 ```javascript
 with (window) {
-  ;setInterval('console.log("Hello world!");', 500
+  ;setInterval('console.log("Hello world!");', 500)
   // This will continuously log "Hello world!" as expected.
 }
 ```
@@ -78,7 +97,7 @@ var MOL = 42;
 Don't use semicolons before arbitrary CONTROL STRUCTURES though as this looks weird to the eyes of the alarmed developer:
 
 ```javascript
-;if () // This doesn't make appropriate sense
+;if () // This doesn't even make appropriate sense
 ```
 
 Another common gotcha is that you should avoid **prepending function declarations** with semicolons since it is not strictly necessary:
@@ -105,7 +124,8 @@ Don't stretch it! ;-)
 
 ```javascript
 ;;;
-// This code does nothing
+// This code does nothing and will make you look a laughable idiot in
+// front of your co-workers at work in the JavaScript language.
 ```
 
 **Good:**
@@ -117,7 +137,7 @@ function foo () {
   // "Hello world!", using as many semicolons as there are available
   // characters reserved for semicolons in the JavaScript code given.
   // Observe how it also appeals to the distinguished eye of the
-  // probation officer
+  // probation officer's daughter
 }
 ```
 
@@ -180,7 +200,7 @@ while (true) {
 }
 ```
 
-> Remember: always write your control structures as if you were an angry cop dealing with a stubborn old frog!
+> Remember: always write your control structures as if you were a disenchanted designer dealing with a stubborn old sheet of paper!
 
 Often it is also advisable to **abstract away the control structures altogether**, thus making your code much easier to maintain if you don't have any knowledge of the JavaScript language whatsoever:
 
@@ -297,6 +317,53 @@ Try to make your code more **self-evaluating** instead:
 // See, no eval() required here! ;-)
 ```
 
+### Use higher order comments
+
+When writing a lot of repetitive JavaScript code, you'll inevitably find yourself writing the same comments over and over again; this is commonly referred to as the _comment hell_. Therefore, it is a good software design pattern to create *Higher Order Comments* (HOCs). This makes your comments more reusable and easier to reason about.
+
+**Bad:**
+
+```javascript
+function foo () {
+  // @TODO: implement coment w/o spelling error
+}
+
+function bar () {
+  // @TODO: implement coment w/o spelling error
+}
+// Déjà vu... yuck!
+```
+
+With just a few additional LOC's we can instead abstract away the nasty `@TODO` allocations by creating a **Higher Order Comment**, which is not only more code, but also less transparent to the inexperienced developer of orthodox JavaScript function declaration code:
+
+```javascript
+function withComment (comment) {
+  ;return function (fn) {
+    ;var fnString = fn.toString()
+    ;var whereIsTheLastCurlyBrace = fnString.lastIndexOf('}')
+    ;eval(
+'var commentedFn = ' +
+fnString.slice(0, whereIsTheLastCurlyBrace) +
+comment + '\n' +
+fnString.slice(whereIsTheLastCurlyBrace)
+    )
+    ;return commentedFn
+  }
+}
+
+var withTodoComment = withComment('// @TODO: implement')
+
+var foo = withTodoComment(function foo () { })
+var bar = withTodoComment(function bar () { })
+// Now both foo and bar implement the same @TODO comment;
+// they SHARE or DECORATE themselves with a string literal
+// instance object assignment.
+```
+
+So we have just made a huge step away from comment-driven development (CDD) towards HUGE improvement capabilities of the reusable JavaScript pattern. Errors in your code can then easily be duplicated and distributed to consumers of the code, without any need to write a SINGLE LINE OF COMMENT twice.
+
+> Remember: don't repeat yourself!
+
 ## Testing
 
 ### Write inline tests
@@ -315,7 +382,8 @@ Your tests are not supposed to be run at an indeterminate point in the future, b
       ;expect(e).to.be.not.falsey
       // This test will ALWAYS pass since it doesn't take
       // into account possible outcomes other than throwing
-      // an exception.
+      // an exception. This basically renders the whole
+      // test useless.
     }
   })
 })
@@ -335,3 +403,7 @@ if (Math.random() < 0.5) {
   // fail right from the console.
 }
 ```
+
+## Contributing
+
+When contributing, please adhere to the [orthodox JavaScript style guide](https://github.com/m3g4p0p/orthodox-javascript/blob/master/README.md). All code that does not will be COMMENTED OUT without warning! Also please try to not OVERUSE INLINE UPPERCASE PHRASES is it makes the document harder to debug while debugging the wording of the [orthodox JavaScript style guide](https://github.com/m3g4p0p/orthodox-javascript/blob/master/README.md). Thus, this is something that belongs in the realm of DON'Ts as far as this document is concerned.
