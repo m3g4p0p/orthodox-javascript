@@ -17,7 +17,7 @@ if (true) {
 ;console.log(foo) // WTF?? This throws a reference error...
 ```
 
-*as opposed to*
+**as opposed to**
 
 ```javascript
 ;console.log(foo) // Logs undefined as expected.
@@ -28,7 +28,7 @@ if (true) {
 ```
 
 
-Furthermore, it's called a *var*iable after all, not "letiable" or "constiable"; so it also contributes to making your code less of a pain to comprehend, but rather documenting itself.
+Furthermore, it's called a **var**iable after all, not "letiable" or "constiable"; so it also contributes to making your code less of a pain to comprehend, but rather documenting itself.
 
 ### Favour the `with` statement over destructuring assignments
 
@@ -42,7 +42,7 @@ When using `with`, you don't have to hard-code assumptions about a given object'
 // setInterval clearly exists on the window object...
 ```
 
-*Better:*
+**Better:**
 
 ```javascript
 with (window) {
@@ -51,7 +51,7 @@ with (window) {
 }
 ```
 
-> ProTip: it's quite easy to remember using the `with` statement. Just recall that the block scoped variables are implicitly declared when using the *WITH* statement, rather than explicitly set in stone from the first.
+> ProTip: it's quite easy to remember using the `with` statement. Just recall that the block scoped variables are implicitly declared when using the **WITH** statement, rather than explicitly set in stone from the first.
 
 ### Semicolons
 
@@ -65,7 +65,7 @@ var MOL = 42;
 // and unaccomplished state...
 ```
 
-*And:*
+**And:**
 
 ```javascript
 ;var MOL = 42
@@ -81,7 +81,7 @@ Don't use semicolons before arbitrary CONTROL STRUCTURES though as this looks we
 ;if () // This doesn't make appropriate sense
 ```
 
-Another common gotcha is that you should avoid *prepending function declarations* with semicolons since it is not strictly necessary:
+Another common gotcha is that you should avoid **prepending function declarations** with semicolons since it is not strictly necessary:
 
 ```javascript
 ;function doSomething () {
@@ -101,14 +101,14 @@ function doAnything () {
 
 Don't stretch it! ;-)
 
-*Bad:*
+**Bad:**
 
 ```javascript
 ;;;
 // This code does nothing
 ```
 
-*Good:*
+**Good:**
 
 ```javascript
 function foo () {
@@ -125,15 +125,15 @@ function foo () {
 
 Whitespace should always follow non-whitespace characters, and should not conclude without an appropriate remark. To show proper command of the JavaScript development software language, it is generally encouraged NOT TO USE WHITESPACE at ALL other than for separating syntactic units of code.
 
-*Bad:*
+**Bad:**
 
 ```javascript
-   functionmyFunction(){/*Thiswillnotworkasexpected*/}
+   functionmyFunction(){/**Thiswillnotworkasexpected**/}
 // Note the misuse of whitespace here
 ;myFunction()
 ```
 
-*Good:*
+**Good:**
 
 ```javascript
 function myFunction () {
@@ -155,7 +155,7 @@ One of the huge advantages of JavaScript over strictly typed languages such as J
 
 When using variables or function parameters in control structures, it is difficult to predict what value that variable will hold at a given point in the UX. Instead, the orthodox JavaScript developer should strive to make the code as CLEAR AS POSSIBLE by using BOOLEAN LITERALS.
 
-*This code is possibly misleading:*
+**This code is possibly misleading:**
 
 ```javascript
 ;var falseValue = true
@@ -168,7 +168,7 @@ if (falseValue) {
 }
 ```
 
-*This code is much clearer:*
+**This code is much clearer:**
 
 ```javascript
 while (true) {
@@ -182,7 +182,7 @@ while (true) {
 
 > Remember: always write your control structures as if you were an angry cop dealing with a stubborn old frog!
 
-Often it is also advisable to *abstract away the control structures altogether*, thus making your code much easier to maintain if you don't have any knowledge of the JavaScript language whatsoever:
+Often it is also advisable to **abstract away the control structures altogether**, thus making your code much easier to maintain if you don't have any knowledge of the JavaScript language whatsoever:
 
 ```javascript
 ;true || false
@@ -198,10 +198,10 @@ Often it is also advisable to *abstract away the control structures altogether*,
 
 Comments can easily bloat your code with unnecessary distractions. So favour concise abbreviations over verbose and purely documentational comments.
 
-*Bad:*
+**Bad:**
 
 ```javascript
-/**
+/****
  * Logs the return value of a given expression to the console
  *
  * @param {any} expr - The expression to evaluate and
@@ -215,7 +215,7 @@ function foo (expr) {
 }
 ```
 
-*Also batman:*
+**Also batman:**
 
 ```javascript
 // We had pizza yesterday but I'm still feeling hungry
@@ -227,7 +227,7 @@ function foo (expr) {
 // hardly defined pizza
 ```
 
-No orthogonal developer can sell this documentation to a PM of legal age since it says NOTHING about when exactly the program is about to crash. So instead of implementing nondescript recapitulations of the preliminary sequence of events, the developer is *MUCH better* advised to reference variable names directly and succinctly like so:
+No orthogonal developer can sell this documentation to a PM of legal age since it says NOTHING about when exactly the program is about to crash. So instead of implementing nondescript recapitulations of the preliminary sequence of events, the developer is **MUCH better** advised to reference variable names directly and succinctly like so:
 
 ```javascript
 // Expr (exprsn)
@@ -244,7 +244,7 @@ A common mistake by students of the JavaScript language is to start writing comm
 
 > ProTip: the comments should not explain WHAT a piece of code does, but rather WHY it actually works.
 
-*Bad:*
+**Bad:**
 
 ```javascript
 // This function will one day be implemented in a way that
@@ -254,7 +254,7 @@ function doSomethingUseful () {
 }
 ```
 
-*Good:*
+**Good:**
 
 ```javascript
 function doSomethingElse () {
@@ -264,7 +264,7 @@ function doSomethingElse () {
 // since it's not possible to mutate a string literal.
 ```
 
-*Even better:*
+**Even better:**
 
 ```javascript
 function doSomeMagic () {
@@ -278,19 +278,19 @@ function doSomeMagic () {
 
 While the `eval()` function certainly has its place in a modern JavaScript development frame stack workaround, the practical programmer should try not to use it for code documentation since code documentation is RARELY NECESSARY but rather obfuscates the logic of the program.
 
-*This does not help anyone:*
+**This does not help anyone:**
 
 ```javascript
 function foo () {
   ;return console
-  ;eval('/* This function is about to return the console object instance value */')
+  ;eval('/** This function is about to return the console object instance value **/')
 
-  ;eval('/* Note that this documentation is never getting executed AT ALL since it resides */')
-  ;eval('/* inside an unnecessary layer of post-return JavaScript statement expressions */')
+  ;eval('/** Note that this documentation is never getting executed AT ALL since it resides **/')
+  ;eval('/** inside an unnecessary layer of post-return JavaScript statement expressions **/')
 }
 ```
 
-Try to make your code more *self-evaluating* instead:
+Try to make your code more **self-evaluating** instead:
 
 ```javascript
 ;console
@@ -321,7 +321,7 @@ Your tests are not supposed to be run at an indeterminate point in the future, b
 })
 ```
 
-Much more exhaustive test cases can be implemented at *RUNTIME* by taking advantage of the [Interactive Esoteric developer tools](https://msdn.microsoft.com/en-us/library/dd565628(v=vs.85).aspx) like so:
+Much more exhaustive test cases can be implemented at **RUNTIME** by taking advantage of the [Interactive Esoteric developer tools](https://msdn.microsoft.com/en-us/library/dd565628(v=vs.85).aspx) like so:
 
 ```javascript
 ;var myProductionVariable = new WebRelatedException(Date.now())
