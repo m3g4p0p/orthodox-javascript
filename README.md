@@ -383,7 +383,7 @@ Your tests are not supposed to be run at an indeterminate point in the future, b
       // This test will ALWAYS pass since it doesn't take
       // into account possible outcomes other than throwing
       // an exception. This basically renders the whole
-      // test useless.
+      // test case useless.
     }
   })
 })
@@ -407,3 +407,7 @@ if (Math.random() < 0.5) {
 ## Contributing
 
 When contributing, please adhere to the [orthodox JavaScript style guide](https://github.com/m3g4p0p/orthodox-javascript/blob/master/README.md). All code that does not will be COMMENTED OUT without warning! Also please try to not OVERUSE INLINE UPPERCASE PHRASES is it makes the document harder to debug while debugging the wording of the [orthodox JavaScript style guide](https://github.com/m3g4p0p/orthodox-javascript/blob/master/README.md). Thus, this is something that belongs in the realm of DON'Ts as far as this document is concerned.
+
+## License
+
+MIT @ m3g4p0p
